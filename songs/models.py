@@ -1,15 +1,9 @@
 from django.db import models
 
-class Branch(models.Model):
-    name = models.CharField(max_length=255,blank=True)
-    acronym = models.CharField(max_length=20,blank=True)
-
-    def __str__(self):
-        return self.name+" ["+self.acronym+"]"
 
 # Create your models here.
 class Song(models.Model):
-    branch = models.ForeignKey("Branch", blank=True, on_delete=models.PROTECT)
+    branch = models.ForeignKey("categories.Branch", blank=True, on_delete=models.PROTECT)
     title = models.CharField(max_length=255,blank=True)
     romanized_title = models.CharField(max_length=255,blank=True)
     lyricist = models.ManyToManyField("artists.Artist", blank=True, related_name="written_songs")
