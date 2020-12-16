@@ -13,7 +13,7 @@ class ArtistManager(models.Manager):
     def comma_to_qs(self, artists_str):
         final_ids = []
         for artist in artists_str.split(','):
-            obj, created = self.create_or_new(strip(artist))
+            obj, created = self.create_or_new(artist.strip())
             final_ids.append(obj.id)
         qs = self.get_queryset().filter(id__in=final_ids).distinct()
         return qs
