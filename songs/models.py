@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 class Song(models.Model):
     branch = models.ForeignKey("categories.Branch", on_delete=models.PROTECT)
-    title = models.CharField(max_length=255,blank=True)
-    romanized_title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    romanized_title = models.CharField(max_length=255,blank=True)
     lyricist = models.ManyToManyField("artists.Artist", blank=True, related_name="written_songs")
     composer = models.ManyToManyField("artists.Artist", blank=True, related_name="composed_songs")
     arranger = models.ManyToManyField("artists.Artist", blank=True, related_name="arranged_songs")
