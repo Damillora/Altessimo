@@ -1,17 +1,37 @@
 from django.db import models
 
+class Branch(models.Model):
+    name = models.CharField(max_length=255,blank=True)
+    acronym = models.CharField(max_length=20,blank=True)
+
+    def __str__(self):
+        return self.name+" ["+self.acronym+"]"
+
 # Create your models here.
 class Song(models.Model):
-    title = models.CharField(max_length=255)
-    romanized_title = models.CharField(max_length=255)
+    branch = models.ForeignKey("Branch", blank=True, on_delete=models.PROTECT)
+    title = models.CharField(max_length=255,blank=True)
+    romanized_title = models.CharField(max_length=255,blank=True)
     lyricist = models.ManyToManyField("artists.Artist", blank=True, related_name="written_songs")
     composer = models.ManyToManyField("artists.Artist", blank=True, related_name="composed_songs")
     arranger = models.ManyToManyField("artists.Artist", blank=True, related_name="arranged_songs")
     impression = models.TextField(blank=True)
 
+    class Meta:
+        ordering = [ 'romanized_title','title' ]  
+
+    def __str__(self):
+        return "["+self.branch.acronym+"] "+self.title
+
 class OutsideSong(models.Model):
-    title = models.CharField(max_length=255)
-    romanized_title = models.CharField(max_length=255)
-    origin = models.CharField(max_length=255)
-    url = models.URLField(max_length=255)
+    title = models.CharField(max_length=255,blank=True)
+    artist = models.CharField(max_length=255,blank=True)
+    origin = models.CharField(max_length=255,blank=True)
+    url = models.URLField(max_length=255,blank=True)
     composer = models.ForeignKey("artists.Artist", blank=True, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = [ 'composer','title' ]  
+
+    def __str__(self):
+        return "["+self.composer.romanized_name+"] "+self.title
