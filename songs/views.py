@@ -1,10 +1,14 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
 from .models import Song
 # Create your views here.
 def song_index(request):
     songs = Song.objects.all()
-    return render(request,'songs/index.html',{'songs':songs})
+    paginator = Paginator(songs, 100)
+    page_number = request.GET.get('page',1)
+    page_obj = paginator.get_page(page_number)
+    return render(request,'songs/index.html',{'page_obj':page_obj})
 
 def song_id(request, id):
     song = Song.objects.filter(id=id)[0]
