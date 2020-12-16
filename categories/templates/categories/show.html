@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Category: {{ category.name }} {% endblock %}
+
+{% block content %}
+    <h1>Category: {{ category.name }}</h1>
+    <h2>Description</h2>
+    <p>{{ category.description }}</p>
+    <h2>Artists</h2>
+    <ul>
+        {% for artist in category.artist_set.all %}
+        <li><a href="/artists/{{ artist.slug }}">{{ artist.romanized_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

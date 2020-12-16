@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Songs {% endblock %}
+
+{% block content %}
+    <h1>Songs</h1>
+    <ul>
+        {% include 'components/song-table.html' with songs=songs %}
+    </ul>
+{% endblock %}

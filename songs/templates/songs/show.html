@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Song: {{ song.title }} {% endblock %}
+
+{% block content %}
+    <h1>{{ song.title }}</h1>
+    <h2>Metadata</h2>
+    <table class="table">
+        <tbody>
+            {% if song.branch %}
+            <tr>
+                <th scope="row">Branch</th>
+                <td><a href="/taxonomy/branches/{{ song.branch.acronym }}">[{{ song.branch.acronym }}] {{ song.branch.name }}</a></td>
+            </tr>
+            {% endif %}
+            {% if song.title %}
+            <tr>
+                <th scope="row">Title</th>
+                <td>{{ song.title }}</td>
+            </tr>
+            {% endif %}
+            {% if song.romanized_title %}
+            <tr>
+                <th scope="row">Romanized Title</th>
+                <td>{{ song.romanized_title }}</td>
+            </tr>
+            {% endif %}
+            {% for lyricist in song.lyricist.all %}
+            <tr>
+                <th scope="row">Lyricist</th>
+                <td><a href="/artists/{{ lyricist.slug }}">{{ lyricist.romanized_name }}</a></td>
+            </tr>
+            {% endfor %}
+            {% for composer in song.composer.all %}
+            <tr>
+                <th scope="row">Composer</th>
+                <td><a href="/artists/{{ composer.slug }}">{{ composer.romanized_name }}</a></td>
+            </tr>
+            {% endfor %}
+            {% for arranger in song.arranger.all %}
+            <tr>
+                <th scope="row">Arranger</th>
+                <td><a href="/artists/{{ arranger.slug }}">{{ arranger.romanized_name }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Impression</h2>
+    <p>{{ song.impression }}</p>
+{% endblock %}

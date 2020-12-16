@@ -1,8 +1,11 @@
 from django.db import models
+from django.utils.text import slugify
 
 class Branch(models.Model):
     name = models.CharField(max_length=255,blank=True)
-    acronym = models.CharField(max_length=20,blank=True)
+    acronym = models.CharField(max_length=20)
+    description = models.TextField(blank=True)
+    logo = models.ImageField(upload_to="logo",blank=True)
 
     def __str__(self):
         return self.name+" ["+self.acronym+"]"
@@ -26,6 +29,7 @@ class CategoryManager(models.Manager):
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
     description = models.TextField(blank=True)
 
     objects = CategoryManager()
@@ -36,4 +40,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args,**kwargs)
 

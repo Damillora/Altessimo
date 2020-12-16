@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Branches{% endblock %}
+{% block content %}
+    <h1>Branches</h1>
+    <table class="table">
+        <thead>
+            <th>Acronym</th>
+            <th>Logo</th>
+            <th>Name</th>
+        </thead>
+        <tbody>
+        {% for branch in branches %}
+        <tr>
+            <td>{{ branch.acronym }}</td>
+            <td>
+                {% if branch.logo %}
+                <img src="{{ branch.logo.path }}" width=24>
+                {% endif %}
+            </td>
+            <td><a href="/taxonomy/branches/{{ branch.acronym }}">{{ branch.name }} [{{ branch.acronym }}]</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

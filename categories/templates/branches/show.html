@@ -1,0 +1,9 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>[{{ branch.acronym }}] {{ branch.name }}</h1>
+    <h2>Description</h2>
+    <p>{{ branch.description }}</p>
+    <h2>Songs</h2>
+    {% include 'components/song-table.html' with songs=songs %}
+{% endblock %}

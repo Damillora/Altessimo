@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Categories {% endblock %}
+
+{% block content %}
+    <h1>Categories</h1>
+    <ul>
+        {% for category in categories %}
+        <li><a href="/taxonomy/categories/{{ category.slug }}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

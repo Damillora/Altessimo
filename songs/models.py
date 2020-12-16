@@ -3,9 +3,9 @@ from django.db import models
 
 # Create your models here.
 class Song(models.Model):
-    branch = models.ForeignKey("categories.Branch", blank=True, on_delete=models.PROTECT)
+    branch = models.ForeignKey("categories.Branch", on_delete=models.PROTECT)
     title = models.CharField(max_length=255,blank=True)
-    romanized_title = models.CharField(max_length=255,blank=True)
+    romanized_title = models.CharField(max_length=255)
     lyricist = models.ManyToManyField("artists.Artist", blank=True, related_name="written_songs")
     composer = models.ManyToManyField("artists.Artist", blank=True, related_name="composed_songs")
     arranger = models.ManyToManyField("artists.Artist", blank=True, related_name="arranged_songs")
@@ -18,10 +18,10 @@ class Song(models.Model):
         return "["+self.branch.acronym+"] "+self.title
 
 class OutsideSong(models.Model):
-    title = models.CharField(max_length=255,blank=True)
+    title = models.CharField(max_length=255)
     artist = models.CharField(max_length=255,blank=True)
-    origin = models.CharField(max_length=255,blank=True)
-    url = models.URLField(max_length=255,blank=True)
+    origin = models.CharField(max_length=255)
+    url = models.URLField(max_length=255)
     composer = models.ForeignKey("artists.Artist", blank=True, on_delete=models.CASCADE)
 
     class Meta:

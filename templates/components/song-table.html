@@ -1,0 +1,42 @@
+<table class="table">
+    <thead>
+        <th class="col-1">Branch</th>
+        <th class="col-4">Song Title</th>
+        <th>Lyricist</th>
+        <th>Composer</th>
+        <th>Arranger</th>
+    </thead>
+    <tbody>
+        {% for song in songs %}
+        <tr>
+            <td>
+                {% if song.branch.logo %}
+                <a href="/taxonomy/branches/{{ song.branch.acronym }}">
+                    <img src="{{ song.branch.logo.url }}" width=24>
+                </a>
+                {% else %}
+                <a href="/taxonomy/branches/{{ song.branch.acronym }}">{{ song.branch.acronym }}</a>
+                {% endif %}
+            </td>
+            <td>
+                <a href="/songs/{{ song.id }}/{{ song.title }}">{{ song.title }}</a>
+            </td>
+            <td>
+                {% for artist in song.lyricist.all %}
+                <a href="/artists/{{ artist.slug }}">{{ artist.romanized_name }}</a><br/>
+                {% endfor %}
+            </td>
+            <td>
+                {% for artist in song.composer.all %}
+                <a href="/artists/{{ artist.slug }}">{{ artist.romanized_name }}</a><br/>
+                {% endfor %}
+            </td>
+            <td>
+                {% for artist in song.arranger.all %}
+                <a href="/artists/{{ artist.slug }}">{{ artist.romanized_name }}</a><br/>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

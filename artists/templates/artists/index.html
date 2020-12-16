@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Artists {% endblock %}
+
+{% block content %}
+    <h1>Artists</h1>
+    <ul>
+        {% for artist in artists %}
+        <li><a href="/artists/{{ artist.slug }}">{{ artist.romanized_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

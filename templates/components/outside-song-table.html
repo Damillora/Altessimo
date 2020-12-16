@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+        <th class="col-4">Title</th>
+        <th>Artist</th>
+        <th>Origin</th>
+        <th class="col-2">Link</th>
+    </thead>
+    <tbody>
+        {% for song in outside_songs %}
+        <tr>
+            <td>{{ song.title }}</td>
+            <td>{{ song.artist }}</td>
+            <td>{{ song.origin }}</td>
+            <td><a href="{{ song.url }}">Open</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
