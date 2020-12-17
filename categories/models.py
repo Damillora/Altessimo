@@ -20,7 +20,7 @@ class CategoryManager(models.Manager):
                 final_ids.append(obj.id)
             qs = self.get_queryset().filter(id__in=final_ids).distinct()
             return qs
-    return self.none()
+        return self.none()
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
