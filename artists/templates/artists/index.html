@@ -4,9 +4,24 @@
 
 {% block content %}
     <h1>Artists</h1>
-    <ul>
-        {% for artist in artists %}
-        <li><a href="/artists/{{ artist.slug }}">{{ artist.romanized_name }}</a></li>
-        {% endfor %}
-    </ul>
+    <form action="{{ request.path }}" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-button" name="q">
+            <button class="btn btn-outline-secondary" type="submit" id="search-button">Search</button>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <th>Artist</th>
+        </thead>
+        <tbody>
+            {% for artist in artists %}
+            <tr>
+                <td>
+                    <a href="/artists/{{ artist.slug }}">{{ artist.romanized_name }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

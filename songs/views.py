@@ -5,10 +5,16 @@ from .models import Song
 # Create your views here.
 def song_index(request):
     songs = Song.objects.all()
+    objs = {}
+    if "q" in request.GET:
+        q = request.GET['q']
+        songs = Song.objects.filter(title__contains=q) | Song.objects.filter(romanized_title__contains=q)
+        objs['q'] = q
     paginator = Paginator(songs, 100)
     page_number = request.GET.get('page',1)
     page_obj = paginator.get_page(page_number)
-    return render(request,'songs/index.html',{'page_obj':page_obj})
+    objs['page_obj'] = page_obj
+    return render(request,'songs/index.html',objs)
 
 def song_id(request, id):
     song = Song.objects.filter(id=id)[0]

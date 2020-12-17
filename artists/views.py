@@ -6,7 +6,13 @@ from songs.models import OutsideSong
 
 def artist_index(request):
     artists = Artist.objects.all()
-    return render(request,'artists/index.html',{'artists':artists})
+    objs = {}
+    if "q" in request.GET:
+        q = request.GET['q']
+        artists = Artist.objects.filter(name__contains=q) | Artist.objects.filter(romanized_name__contains=q)
+        objs['q'] = q
+    objs['artists'] = artists
+    return render(request,'artists/index.html',objs)
 
 def artist_show(request, slug):
     artist = Artist.objects.filter(slug=slug)[0]

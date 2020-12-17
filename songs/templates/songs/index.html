@@ -4,6 +4,12 @@
 
 {% block content %}
     <h1>Songs</h1>
+    <form action="{{ request.path }}" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-button" name="q">
+            <button class="btn btn-outline-secondary" type="submit" id="search-button">Search</button>
+        </div>
+    </form>
     {% include 'components/song-table.html' with songs=page_obj %}
     <nav aria-label="Pages">
         <ul class="pagination">
