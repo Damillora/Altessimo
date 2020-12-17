@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Category: {{ category.name }}</h1>
     <h2>Description</h2>
-    <p>{{ category.description }}</p>
+    <div>{{ category.description|safe }}</div>
     <h2>Artists</h2>
     <ul>
         {% for artist in category.artist_set.all %}

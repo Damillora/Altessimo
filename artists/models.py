@@ -4,17 +4,10 @@ from django.utils.text import slugify
 
 # Create your models here.
 class ArtistManager(models.Manager):
-    def create_or_new(self, romanized_name):
-        romanized_name = romanized_name.strip()
-        qs = self.get_queryset().filter(romanized_name__iexact=romanized_name)
-        if qs.exists():
-            return qs.first(), False
-        return Artist.objects.create(romanized_name=romanized_name), True
-    
     def comma_to_qs(self, artists_str):
         final_ids = []
         for artist in artists_str.split(','):
-            obj, created = self.create_or_new(artist.strip())
+            obj, created = self.get_or_create(romanized_name=artist.strip())
             final_ids.append(obj.id)
         qs = self.get_queryset().filter(id__in=final_ids).distinct()
         return qs

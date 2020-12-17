@@ -3,7 +3,7 @@
 {% block content %}
     <h1>[{{ branch.acronym }}] {{ branch.name }}</h1>
     <h2>Description</h2>
-    <p>{{ branch.description }}</p>
+    <div>{{ branch.description|safe }}</div>
     <h2>Songs</h2>
     {% include 'components/song-table.html' with songs=page_obj %}
     <nav aria-label="Pages">

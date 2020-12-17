@@ -12,17 +12,10 @@ class Branch(models.Model):
 
 # Create your models here.
 class CategoryManager(models.Manager):
-    def create_or_new(self, name):
-        name = name.strip()
-        qs = self.get_queryset().filter(name__iexact=name)
-        if qs.exists():
-            return qs.first(), False
-        return Category.objects.create(name=name), True
-    
-    def comma_to_qs(self, categorys_str):
+    def comma_to_qs(self, categories_str):
         final_ids = []
         for category in categories_str.split(','):
-            obj, created = self.create_or_new(category)
+            obj, created = self.get_or_create(name=category.strip())
             final_ids.append(obj.id)
         qs = self.get_queryset().filter(id__in=final_ids).distinct()
         return qs

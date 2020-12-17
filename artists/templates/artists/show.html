@@ -50,9 +50,9 @@
         </tbody>
     </table>
     <h2>About Artist</h2>
-    <p>{{ artist.about_artist }}</p>
+    <div>{{ artist.about_artist|safe }}</div>
     <h2>About Music</h2>
-    <p>{{ artist.about_music }}</p>
+    <div>{{ artist.about_music|safe }}</div>
     <h2>Credits</h2>
     {% include 'components/song-table.html' with songs=credit_songs %}
     <h2>Sample works outside Idolmaster</h2>
