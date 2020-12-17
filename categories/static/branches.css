@@ -1,0 +1,69 @@
+.song-row a {
+    text-decoration: none;
+}
+.song-row a:hover {
+    text-decoration: underline;
+}
+.branch-765 {
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+.branch-765 a {
+    color: #c62828;
+}
+.branch-346 {
+    background-color: #64b5f6;
+    color: #0d47a1;
+}
+.branch-346 a {
+    color: #0d47a1;
+}
+.branch-765ML {
+    background-color: #f9a825;
+    color: #6d4c41;
+}
+.branch-765ML a {
+    color: #6d4c41;
+}
+.branch-315 {
+    background-color: #a5d6a7;
+    color: #1b5e20;
+}
+.branch-315 a {
+    color: #1b5e20;
+}
+.branch-283 {
+    background-color: #bbdefb;
+    color: #1976d2;
+}
+.branch-283 a {
+    color: #1976d2;
+}
+.branch-876 {
+    background-color: #d1c4e9;
+    color:#512da8;
+}
+.branch-876 a {
+    color:#512da8;
+}
+.branch-961 {
+    background-color: #f0f4c3;
+    color: #827717;
+}
+.branch-961 a {
+    color: #827717;
+}
+.branch-5STARS {
+    background-color: #d81b60;
+    color: #fce4ec;
+}
+.branch-5STARS a {
+    color: #fce4ec;
+}
+.branch-POP {
+    background-color: #1663cd;
+    color: #e8eaf6;
+}
+.branch-POP a {
+    color: #e8eaf6;
+}

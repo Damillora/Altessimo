@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 altessimo/production.py
-static/
+/static/
