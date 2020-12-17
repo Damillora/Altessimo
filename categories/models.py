@@ -14,11 +14,13 @@ class Branch(models.Model):
 class CategoryManager(models.Manager):
     def comma_to_qs(self, categories_str):
         final_ids = []
-        for category in categories_str.split(','):
-            obj, created = self.get_or_create(name=category.strip())
-            final_ids.append(obj.id)
-        qs = self.get_queryset().filter(id__in=final_ids).distinct()
-        return qs
+        if categories_str:
+            for category in categories_str.split(','):
+                obj, created = self.get_or_create(name=category.strip())
+                final_ids.append(obj.id)
+            qs = self.get_queryset().filter(id__in=final_ids).distinct()
+            return qs
+    return self.none()
 
 class Category(models.Model):
     name = models.CharField(max_length=255)

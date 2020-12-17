@@ -6,11 +6,13 @@ from django.utils.text import slugify
 class ArtistManager(models.Manager):
     def comma_to_qs(self, artists_str):
         final_ids = []
-        for artist in artists_str.split(','):
-            obj, created = self.get_or_create(romanized_name=artist.strip())
-            final_ids.append(obj.id)
-        qs = self.get_queryset().filter(id__in=final_ids).distinct()
-        return qs
+        if artists_str:
+            for artist in artists_str.split(','):
+                obj, created = self.get_or_create(romanized_name=artist.strip())
+                final_ids.append(obj.id)
+            qs = self.get_queryset().filter(id__in=final_ids).distinct()
+            return qs
+        return self.none()
 
 class Artist(models.Model):
     name = models.CharField(max_length=255,blank=True)
