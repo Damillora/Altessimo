@@ -8,7 +8,7 @@ def song_index(request):
     objs = {}
     if "q" in request.GET:
         q = request.GET['q']
-        songs = Song.objects.filter(title__contains=q) | Song.objects.filter(romanized_title__contains=q)
+        songs = Song.objects.filter(title__icontains=q) | Song.objects.filter(romanized_title__icontains=q)
         objs['q'] = q
     paginator = Paginator(songs, 100)
     page_number = request.GET.get('page',1)

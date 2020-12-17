@@ -9,7 +9,7 @@ def artist_index(request):
     objs = {}
     if "q" in request.GET:
         q = request.GET['q']
-        artists = Artist.objects.filter(name__contains=q) | Artist.objects.filter(romanized_name__contains=q)
+        artists = Artist.objects.filter(name__icontains=q) | Artist.objects.filter(romanized_name__icontains=q)
         objs['q'] = q
     objs['artists'] = artists
     return render(request,'artists/index.html',objs)
