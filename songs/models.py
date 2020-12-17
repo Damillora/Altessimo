@@ -12,7 +12,7 @@ class Song(models.Model):
     impression = models.TextField(blank=True)
 
     class Meta:
-        ordering = [ 'romanized_title','title' ]  
+        ordering = [ 'composer__romanized_name','arranger__romanized_name','-branch__acronym','romanized_title','title' ]  
 
     def __str__(self):
         return "["+self.branch.acronym+"] "+self.title
