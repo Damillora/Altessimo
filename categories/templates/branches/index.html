@@ -3,24 +3,18 @@
 {% block title %}Branches{% endblock %}
 {% block content %}
     <h1>Branches</h1>
-    <table class="table">
-        <thead>
-            <th>Acronym</th>
-            <th>Logo</th>
-            <th>Name</th>
-        </thead>
-        <tbody>
-        {% for branch in branches %}
-        <tr>
-            <td>{{ branch.acronym }}</td>
-            <td>
-                {% if branch.logo %}
-                <img src="{{ branch.logo.path }}" width=24>
-                {% endif %}
-            </td>
-            <td><a href="/taxonomy/branches/{{ branch.acronym }}">{{ branch.name }} [{{ branch.acronym }}]</a></td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% for branch in branches %}
+    <div class="row song-row branch-{{ branch.acronym }}">    
+        <div class="col col-md-3">
+            {% if branch.logo %}
+            <img src="{{ branch.logo.url }}" class="img-fluid">
+            {% endif %}
+        </div>
+        <div class="col col-md-9">
+            <div class="row h-100 align-items-center">
+                <p class="h2"><a href="/taxonomy/branches/{{ branch.acronym }}">{{ branch.name }} [{{ branch.acronym }}]</a></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}

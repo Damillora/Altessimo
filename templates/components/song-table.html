@@ -8,15 +8,9 @@
     </thead>
     <tbody>
         {% for song in songs %}
-        <tr>
+        <tr class="song-row branch-{{ song.branch.acronym }}">
             <td>
-                {% if song.branch.logo %}
-                <a href="/taxonomy/branches/{{ song.branch.acronym }}">
-                    <img src="{{ song.branch.logo.url }}" width=24>
-                </a>
-                {% else %}
                 <a href="/taxonomy/branches/{{ song.branch.acronym }}">{{ song.branch.acronym }}</a>
-                {% endif %}
             </td>
             <td>
                 <a href="/songs/{{ song.id }}/{{ song.title }}">{{ song.title }}</a>

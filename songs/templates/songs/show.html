@@ -8,7 +8,7 @@
     <table class="table">
         <tbody>
             {% if song.branch %}
-            <tr>
+            <tr class="song-row branch-{{ song.branch.acronym }}">
                 <th scope="row">Branch</th>
                 <td><a href="/taxonomy/branches/{{ song.branch.acronym }}">[{{ song.branch.acronym }}] {{ song.branch.name }}</a></td>
             </tr>
