@@ -7,7 +7,7 @@ from categories.models import Category
 # Register your models here.
 class ArtistForm(forms.ModelForm):
     categories_str = forms.CharField(label='Category', required=False)
-    aliases_str = forms.CharField(label='Aliases')
+    aliases_str = forms.CharField(label='Aliases', required=False)
     class Meta:
         model = Artist
         fields = [
