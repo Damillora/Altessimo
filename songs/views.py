@@ -21,5 +21,5 @@ def song_id(request, id):
     return redirect(song_show,id=song.id,title=song.title)
 
 def song_show(request, id, title):
-    song = Song.objects.filter(id=id,title=title)[0]
+    song = Song.objects.filter(id=id)[0]
     return render(request,'songs/show.html',{'song':song})
