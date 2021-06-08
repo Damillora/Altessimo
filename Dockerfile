@@ -6,7 +6,7 @@ RUN apk update \
     && apk add --no-cache mariadb-dev \
     && pip install --no-cache-dir -r /app/requirements.txt \
     && apk add  --no-cache mariadb-connector-c \
-    && apk del .build-deps
+    && apk del build-deps
 ADD . /app
 WORKDIR /app
 
