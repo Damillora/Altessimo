@@ -26,5 +26,8 @@ class Idol(models.Model):
 
     objects = IdolManager()
 
+    class Meta:
+        ordering = [ 'romanized_name','name' ]
+    
     def __str__(self):
-        return self.romanized_name+" (CV: "+self.romanized_voice_actor_name+")"
+        return self.romanized_name+" "+"["+self.branch.acronym+"] "+" (CV: "+self.romanized_voice_actor_name+")"

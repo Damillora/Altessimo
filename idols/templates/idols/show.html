@@ -27,6 +27,26 @@
                 </td>
             </tr>
             {% endif %}
+            {% if idol.voice_actor_name %}
+            <tr>
+                <th scope="row">
+                    Voice Actor Name
+                </th>
+                <td>
+                    {{ idol.voice_actor_name }}
+                </td>
+            </tr>
+            {% endif %}
+            {% if idol.romanized_voice_actor_name %}
+            <tr>
+                <th scope="row">
+                    Romanized Voice Actor Name
+                </th>
+                <td>
+                    {{ idol.romanized_voice_actor_name }}
+                </td>
+            </tr>
+            {% endif %}
         </tbody>
     </table>
 {% endblock %}
