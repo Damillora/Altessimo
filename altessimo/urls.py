@@ -21,5 +21,6 @@ urlpatterns = [
     path('taxonomy/', include('categories.urls')),
     path('artists/', include('artists.urls')),
     path('songs/', include('songs.urls')),
+    path('idols/', include('idols.urls')),
     path('admin/', admin.site.urls),
 ]

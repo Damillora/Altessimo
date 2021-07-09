@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Idols {% endblock %}
+
+{% block content %}
+    <h1>Idols</h1>
+    <form action="{{ request.path }}" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-button" name="q">
+            <button class="btn btn-outline-secondary" type="submit" id="search-button">Search</button>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <th>Idol</th>
+        </thead>
+        <tbody>
+            {% for idol in idols %}
+            <tr>
+                <td>
+                    <a href="/idols/{{ idol.slug }}">{{ idol.romanized_name }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

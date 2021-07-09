@@ -34,3 +34,4 @@ class Artist(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.romanized_name)
         super().save(*args,**kwargs)
+

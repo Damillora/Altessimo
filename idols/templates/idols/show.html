@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Idol: {{ idol.romanized_name }} {% endblock %}
+
+{% block content %}
+    <h1>Idol: {{ idol.romanized_name }}</h1>
+    <h2>Metadata</h2>
+    <table class="table">
+        <tbody>
+            {% if idol.name %}
+            <tr>
+                <th scope="row">
+                    Name
+                </th>
+                <td>
+                    {{ idol.name }}
+                </td>
+            </tr>
+            {% endif %}
+            {% if idol.romanized_name %}
+            <tr>
+                <th scope="row">
+                    Romanized Name
+                </th>
+                <td>
+                    {{ idol.romanized_name }}
+                </td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

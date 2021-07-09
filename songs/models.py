@@ -9,6 +9,7 @@ class Song(models.Model):
     lyricist = models.ManyToManyField("artists.Artist", blank=True, related_name="written_songs")
     composer = models.ManyToManyField("artists.Artist", blank=True, related_name="composed_songs")
     arranger = models.ManyToManyField("artists.Artist", blank=True, related_name="arranged_songs")
+    idols = models.ManyToManyField("idols.Idol",blank=True,related_name="idol_songs")
     impression = models.TextField(blank=True)
 
     class Meta:
