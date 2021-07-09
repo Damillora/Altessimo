@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h1>Song Randomizer</h1>
+<p>A simple song randomizer. </p>
+<p><strong>WARNING: Very experimental. Implementation is not very smart yet.</strong></p>
+{% if num %}
+<p>Song choice</p>
+<h2>
+    {{ song.title }}
+</h2>
+<p>
+    <a href="/songs/{{ song.id }}/{{ song.title }}">View song info</a>
+</p>
+<h2>Idols:</h2>
+<ul>
+    {% for idol in idols %}
+    <li>{{ idol.romanized_name}} (<a href="/idols/{{ idol.id }}">View idol info</a>)</li>
+    {% endfor %}
+</ul>
+{% else %}
+<form>
+    <form action="{{ request.path }}" method="GET">
+        <div class="input-group mb-3">
+            <input type="number" class="form-control" placeholder="Number of idols" aria-label="Number of idols"
+                name="num">
+            <button class="btn btn-outline-secondary" type="submit">Randomize song</button>
+        </div>
+    </form>
+</form>
+{% endif %}
+{% endblock %}
