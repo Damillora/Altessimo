@@ -4,29 +4,58 @@
 <h1>Song Randomizer</h1>
 <p>A simple song randomizer. </p>
 <p><strong>WARNING: Very experimental. Implementation is not very smart yet.</strong></p>
-{% if num %}
-<p>Song choice</p>
-<h2>
-    {{ song.title }}
-</h2>
-<p>
-    <a href="/songs/{{ song.id }}/{{ song.title }}">View song info</a>
-</p>
-<h2>Idols:</h2>
-<ul>
+
+{% if song %}
+<table class="table">
+    <tr>
+        <th>Branch</th>
+        <th>Song</th>
+    </tr>
+    <tr class="song-row branch-{{ song.branch.acronym }}">
+        <td class="col-1">
+            <a href="/taxonomy/branches/{{ song.branch.acronym }}">{{ song.branch.acronym }}</a>
+        </td>
+        <td>
+            <a href="/songs/{{ song.id }}/{{ song.title }}">{{ song.title }}</a>
+        </td>
+    </tr>
+</table>
+{% endif %}
+{% if idols %}
+<table class="table">
+    <tr>
+        <th>Branch</th>
+        <th>Idol</th>
+    </tr>
     {% for idol in idols %}
-    <li>{{ idol.romanized_name}} (<a href="/idols/{{ idol.id }}">View idol info</a>)</li>
+    <tr class="song-row branch-{{ idol.branch.acronym }}">
+        <td class="col-1">
+            <a href="/taxonomy/branches/{{ idol.branch.acronym }}">{{ idol.branch.acronym }}</a>
+        </td>
+        <td><a href="/idols/{{ idol.id }}">{{ idol.romanized_name}}</a></td>
+    </tr>
     {% endfor %}
-</ul>
-{% else %}
-<form>
-    <form action="{{ request.path }}" method="GET">
-        <div class="input-group mb-3">
-            <input type="number" class="form-control" placeholder="Number of idols" aria-label="Number of idols"
-                name="num">
-            <button class="btn btn-outline-secondary" type="submit">Randomize song</button>
-        </div>
-    </form>
+</table>
+{% endif %}
+{% if song is None and idols is None %}
+<form action="{{ request.path }}" method="GET">
+    <button class="btn btn-outline-secondary" type="submit">Randomize song</button>
 </form>
 {% endif %}
+{% if song and idols is None%}
+<form action="{{ request.path }}" method="GET">
+    <div class="input-group mb-3">
+        <input type="hidden" name="song_id" value="{{ song.id }}">
+        <input type="number" class="form-control" placeholder="Number of idols" aria-label="Number of idols"
+            value="{{ num }}" name="num">
+        <button class="btn btn-outline-secondary" type="submit">Randomize idols</button>
+    </div>
+</form>
+{% endif %}
+<form action="{{ request.path }}" method="GET">
+    <div class="input mb-3">
+        <button class="btn btn-outline-secondary" type="submit">Randomize song again</button>
+    </div>
+</form>
+
 {% endblock %}
